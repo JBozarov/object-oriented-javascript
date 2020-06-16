@@ -237,6 +237,7 @@ class Earth {
    }
 }	
 
+
 const earth = new Earth('earth',3);
 console.log(earth);
 
