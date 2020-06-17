@@ -19,7 +19,7 @@ class WhyClass {
 
 const myObj = new WhyClass("Classes are used in OOP as a blueprint which objects are created from")
 console.log(myObj.explain()) // Classes are used in OOP as a blueprint which objects are created from
-console.log(myObj.pieces())
+console.log(myObj.pieces()) // 
 
 
 /*2. You are exploring the rainforests of the Amazon.  You have observed many different types of wildlife on your excursion.  To jog your memory, some different types of wildlife that you observed are found in the following URL : https://www.ietravel.com/blog/amazon-rainforest-animals-beginners-guide-21-species.  Feel free to use other resources online if you wish.
