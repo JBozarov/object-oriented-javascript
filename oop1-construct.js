@@ -226,7 +226,7 @@ octagon.parameter; // 40
 class Earth {
    static name = "Earth";
    static planetNum = 3; 
-     static area = 196.9 
+   static area = 196.9 ; 
 
    constructor(name,num) {
        this.name = name;
@@ -238,8 +238,15 @@ class Earth {
 }	
 
 
+
 const earth = new Earth('earth',3);
 console.log(earth);
+
+// So Each class itself has all properties 
+console.log(Earth.name); // Earth
+console.log(Earth.planetNum); // 3
+console.log(Earth.calcArea()); // Area of Earth is 196.9 mln mile square
+
 
 
 

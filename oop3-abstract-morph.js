@@ -17,14 +17,96 @@ These sub-classes MUST implement the abstract methods of move() and act(), which
 
 */
 
-    class Creature {
-        //your code here...
-    }
+class Creature {
+   constructor(){
+      if (this.constructor === Creature ) {
+         throw new Error ("Creature cannot be instantiated")
+      }
+   }
+   move() {
+      throw new Error ("Move method cannot be invoked")
+   }
+   act() {
+      throw new Error ("Act method cannot be invoked")
+   }
+}
 
-    class Human extends Creature {
-        //your code here...
-    }
+// console.log(Creature.move()) // Error 
+// const c = new Creature("name of cr") // Error
+// console.log(c) // Error
 
+  class Human extends Creature {
+     constructor(name, walkSpeed, age){
+        super()
+        this.name = name; 
+        this.walkSpeed = walkSpeed
+        this.age = age
+     }
+     move = () => {
+        console.log(`${this.name} is moving at the speed of ${this.walkSpeed} mile per hour`)
+     }
+     act = () => {
+        console.log(`${this.name} can act like a human`)
+     }
+     study () {
+        console.log(this.name + " is studying!")
+     }
+     getAge () {
+        console.log(`${this.name}'s age is ${this.age}`)
+     }
+  }
+
+  const human1 = new Human("Sam", 4, 37); 
+  console.log(human1.getAge()) // Sam's age is 37
+
+
+  class Dinosaur extends Creature {
+     constructor(name, weight, runSpeed){
+        super()
+        this.name = name; 
+        this.weight = weight; 
+        this.runSpeed = runSpeed; 
+     }
+     move = () => {
+        console.log(`${this.name} is moving at the speed of ${this.runSpeed} mile per hour`)
+     }
+     act = () => {
+        console.log(`${this.name} acts very aggressive`)
+     }
+     kill () {
+        console.log(this.name + " can kill other animals and eat them!")
+     }
+  }
+
+const brachiosaurus = new Dinosaur("Brachiosaurus", 56, 10); 
+console.log(brachiosaurus.move()) // Brachiosaurus is moving at the speed of 10 mile per hour
+
+
+
+
+
+
+  class Reptile extends Creature {
+     constructor(name, weight, runSpeed, huntTime){
+        super()
+        this.name = name; 
+        this.weight = weight; 
+        this.runSpeed = runSpeed; 
+        this.huntTime = huntTime
+     }
+     move = () => {
+        console.log(`${this.name} is moving at the speed of ${this.runSpeed} mile per hour`)
+     }
+     act = () => {
+        console.log(`${this.name} acts very aggressive`)
+     }
+     hunt () {
+        console.log(`${this.name} hunts ${this.huntTime} times a day!`)
+     }
+  }
+
+  const crocodile = new Reptile("Crocodile", 2, 15, 2); 
+  console.log(crocodile.hunt()) // Crocodile hunts 2 times a day!
 
 
 
@@ -39,7 +121,7 @@ class Person {
         console.log(this.name + " is eating");
     }
 
-    sleep = () => {
+    sleep () {
         console.log(this.name + " is sleeping");
     }
 
@@ -47,13 +129,12 @@ class Person {
         console.log(this.name + " is coding");
     }
 
-    repeat = function() {
+    repeat () {
         console.log(this.name + " is repeating the above steps, yet another time");
     }
 
     explain() {
-        //this function should contain a console.log() explaining what you had to do to get the correct functions to work, and the reasoning behind what you did.
-        console.log("this explain method should contain explain what you had to do to get the correct functions to work, and the reasoning behind what you did.");
+        console.log("I know the order of precedence so first is Child field, Parent field, Child prototype and Parent Prototype. So I pretty much followed to fire Teacher methods. If method is function expression then it has more precedence so I need to convert Child's methods to functions expression");
     }
 
 }
@@ -86,16 +167,27 @@ class Teacher extends Person {
 }
 
 
+
 class Student extends Person {
-    //set up your methods in this student class, so all of these methods will override the methods from the super class.
+   constructor(name) {
+      super(name);
+      this.name = name;
+  }
+   eat() {
+      console.log(this.name + " studies, then eats");
+  }
 
-    //eat method should print out - <stduent name> studies, then eats
+  sleep() {
+      console.log(this.name + " studies coding so much, that they dream about it in their sleep");
+  }
 
-    //sleep method should print out, <student name> studies coding so much, that they dream about it in their sleep
+  code = () => {
+      console.log(this.name + " was first overwhelmed by coding, but kept at it, and now has become a coding guru!");
+  }
 
-    //code method should print out, <student name> was first overwhelmed by coding, but kept at it, and now has become a coding guru!
-
-    //repeat method should print out, <student name> keeps on studying, coding, eating, and sleeping, and puts it all on repeat.  
+  repeat() {
+      console.log(this.name + " keeps on studying, coding, eating, and sleeping, and puts it all on repeat.");
+  }
 
 }
 
@@ -108,10 +200,10 @@ const student = new Student("Pupil Student");
 
 student.explain();
 
-teacher.eat();
-teacher.sleep();
-teacher.code();
-teacher.repeat();
+teacher.eat(); // Dr. Teacher loves to teach before eating
+teacher.sleep(); // Dr. Teacher sleeps after preparing the lesson plan
+teacher.code(); // Dr. Teacher codes first, then teaches it the next day.
+teacher.repeat(); // Dr. Teacher teaches, codes, eats, sleeps, and repeats
 
 student.eat();
 student.sleep();
@@ -132,12 +224,12 @@ class Cook {
         console.log("The cook is cooking " + food1, food2, food3);
     }
 
-    prepare = function() {
-        console.log('The cook is cooking');
+    prepare = function(food1,food2,food3) {
+        console.log(`The cook is cooking ${food1} ${food2} ${food3}`);
     }
 
     explain = () => {
-        console.log("what could you do to get the prepare function to print out the food items that are being passed in to the function?  Once you figure it out, Write down your thought process in this explain method.");
+        console.log("Right now there are 2 prepare functions and when we invoke cook.prepare it is firing the second one because second one is function expression so it is in the field not in the prototype. One way is we need to convert first function to function expression or the second way is we just need to pass food1, food2, food3 to second function which is function expression");
     }
 
 }
